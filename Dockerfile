@@ -8,6 +8,7 @@ MAINTAINER Wiliam Souza <wiliamsouza83@gmail.com>
 
 # Set language
 ENV LANG en_US.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Add universe 
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
