@@ -24,7 +24,7 @@ RUN apt-get update
 RUN apt-get upgrade -y
 
 # Install
-RUN apt-get install bind9 supervisord -y
+RUN apt-get install bind9 supervisor -y
 
 # Configuration
 ADD db.localdev /etc/bind/db.localdev
