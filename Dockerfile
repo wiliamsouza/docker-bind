@@ -1,4 +1,4 @@
-# Bind container used for local development environment
+# DNS container used for local development environment
 #
 # Version 0.0.1
 
@@ -8,13 +8,12 @@ MAINTAINER Wiliam Souza <wiliamsouza83@gmail.com>
 
 # Set language
 ENV LANG en_US.UTF-8
-ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND noninteractive
 
 # Add universe 
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 
 RUN dpkg-divert --local --rename --add /sbin/initctl
-RUN ln -s /bin/true /sbin/initctl
 
 RUN locale-gen en_US en_US.UTF-8
 RUN dpkg-reconfigure locales

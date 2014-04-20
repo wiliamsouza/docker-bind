@@ -1,12 +1,12 @@
-docker-bind
------------
+docker-dns
+----------
 
-Docker bind container template used at titans group for development environment.
+Docker dns container template used to create development environment.
 
 To build run:
 
 ```
-$ docker.io build -t wiliamsouza/bind .
+$ docker.io build -t wiliamsouza/dns .
 ```
 
 Change `wiliamsouza` to your Docker
@@ -15,11 +15,11 @@ Change `wiliamsouza` to your Docker
 Shell access:
 
 ```
-$ docker.io run -i -t wiliamsouza/bind /bin/bash
+$ docker.io run -i -t wiliamsouza/dns /bin/bash
 ```
 
 Usage:
 
 ```
-$ docker.io run -p <ip-address>:53:53 -p <ip-address>:53:53/udp -d wiliamsouza/bind
+$ docker.io run -p <ip-address>:53:53 -p <ip-address>:53:53/udp -d wiliamsouza/dns
 ```

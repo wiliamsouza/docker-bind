@@ -13,3 +13,5 @@ ns         IN      A       127.0.0.1
 www        IN      A       127.0.0.1
 api        IN      A       127.0.0.1
 thumbor    IN      A       127.0.0.1
+mysql      IN      A       127.0.0.1
+rabbitmq   IN      A       127.0.0.1
