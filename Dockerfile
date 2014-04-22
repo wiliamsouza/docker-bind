@@ -1,6 +1,6 @@
-# DNS container used for local development environment
+# Bind container used for local development environment
 #
-# Version 0.0.1
+# Version 0.1.0
 
 FROM ubuntu:12.04
 
