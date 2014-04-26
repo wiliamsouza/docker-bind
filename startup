@@ -1,0 +1,31 @@
+#!/bin/bash -e
+
+mkdir -p /var/run/named
+chmod 775 /var/run/named
+chown root:bind /var/run/named
+
+mkdir /var/cache/bind/
+chmod 775 /var/cache/bind
+chown root:bind /var/cache/bind
+
+
+if [ ! -s /etc/bind/rndc.key ]; then
+    rndc-confgen -r /dev/urandom -a
+fi
+
+if [ ! -s /etc/bind/db.255 ]; then
+    cp /etc/bind/db.0 /etc/bind/db.255
+fi
+
+chmod 2755 /etc/bind
+chmod -R 644 /etc/bind/*
+chown -R root:root /etc/bind
+chown -R root:bind /etc/bind/named.conf
+chown -R root:bind /etc/bind/named.conf.default-zones
+chown -R root:bind /etc/bind/named.conf.local
+chown -R root:bind /etc/bind/named.conf.options
+
+chmod 640 /etc/bind/rndc.key
+chown bind:bind /etc/bind/rndc.key
+
+exec supervisord

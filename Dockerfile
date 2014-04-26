@@ -17,7 +17,17 @@ RUN dpkg-reconfigure locales
 
 RUN apt-get install -y python-software-properties
 
-RUN dpkg-divert --local --rename --add /sbin/initctl
+# supervisor
+RUN apt-get install supervisor -y
+RUN update-rc.d -f supervisor disable
+
+ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# start script
+ADD startup /usr/local/bin/startup
+RUN chmod +x /usr/local/bin/startup
+
+CMD ["/usr/local/bin/startup"]
 
 # Environment
 
@@ -30,19 +40,8 @@ RUN apt-get update
 
 # bind
 RUN apt-get install bind9 -y
+RUN update-rc.d -f bind9 disable
 
-ADD db.localdev /etc/bind/db.localdev
-ADD named.conf.local /etc/bind/named.conf.local
-ADD named.conf.options /etc/bind/named.conf.options
-
-# start script
-
-# supervisor
-RUN apt-get install supervisor -y
-RUN update-rc.d -f supervisor disable
-
-ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+VOLUME ["/etc/bind"]
 
 EXPOSE 53
-
-CMD ["/usr/bin/supervisord"]
